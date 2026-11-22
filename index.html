@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Hrick ♡</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Fredoka (Bubbly Rounded), Quicksand (Cozy Sans), Patrick Hand (Cute Handwritten) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Patrick+Hand&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        // Safely configure Tailwind if the CDN script loaded synchronously
+        window.tailwind = window.tailwind || {};
+        window.tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['"Fredoka"', 'sans-serif'],
+                        hand: ['"Patrick Hand"', 'cursive'],
+                        sans: ['"Quicksand"', 'sans-serif'],
+                    },
+                    colors: {
+                        cream: '#fffaf5',
+                        blush: '#ffeef3',
+                        blushdark: '#ffb7c5',
+                        periwinkle: '#eef4ff',
+                        softblue: '#b8d0fa',
+                        lavender: '#f3ebff',
+                        peach: '#ffebd6',
+                        ink: '#4a404d',
+                        mutedink: '#76697a',
+                    },
+                    animation: {
+                        'float': 'float 4.5s ease-in-out infinite',
+                        'wiggle': 'wiggle 2.8s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-7px)' },
+                        },
+                        wiggle: {
+                            '0%, 100%': { transform: 'rotate(-2deg)' },
+                            '50%': { transform: 'rotate(2deg)' },
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+
+    <style>
+        /* Fallback font & custom color tokens in case Tailwind CDN loads asynchronously */
+        .font-display { font-family: 'Fredoka', sans-serif; }
+        .font-hand { font-family: 'Patrick Hand', cursive; }
+        .font-sans { font-family: 'Quicksand', sans-serif; }
+
+        .bg-cream { background-color: #fffaf5; }
+        .bg-blush { background-color: #ffeef3; }
+        .bg-lavender { background-color: #f3ebff; }
+        .bg-peach { background-color: #ffebd6; }
+        .text-ink { color: #4a404d; }
+        .text-mutedink { color: #76697a; }
+        .text-blushdark { color: #ffb7c5; }
+        .text-softblue { color: #b8d0fa; }
+        .border-softblue { border-color: #b8d0fa; }
+        .border-lavender { border-color: #f3ebff; }
+        .border-peach { border-color: #ffebd6; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-7px); }
+        }
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-2deg); }
+            50% { transform: rotate(2deg); }
+        }
+        .animate-float { animation: float 4.5s ease-in-out infinite; }
+        .animate-wiggle { animation: wiggle 2.8s ease-in-out infinite; }
+
+        body {
+            background-color: #fffaf5;
+            color: #4a404d;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Soft pastel stationery background wash with subtle paper dot texture */
+        .cozy-stationery-bg {
+            background-color: #fffaf5;
+            background-image: 
+                radial-gradient(rgba(184, 208, 250, 0.35) 1px, transparent 1px),
+                radial-gradient(circle at 12% 15%, rgba(255, 238, 243, 0.9) 0%, transparent 45%),
+                radial-gradient(circle at 88% 20%, rgba(238, 244, 255, 0.95) 0%, transparent 48%),
+                radial-gradient(circle at 50% 85%, rgba(243, 235, 255, 0.8) 0%, transparent 55%);
+            background-size: 24px 24px, 100% 100%, 100% 100%, 100% 100%;
+        }
+
+        /* Cute Postage Stamp Edge Effect */
+        .postage-stamp {
+            background: #eef4ff;
+            border: 2px dashed #b8d0fa;
+            box-shadow: 0 4px 10px rgba(74, 64, 77, 0.06);
+        }
+
+        /* Cute Sticker Button */
+        .sticker-btn {
+            background: linear-gradient(135deg, #ffeef3 0%, #ffccd8 100%);
+            box-shadow: 
+                0 8px 20px -4px rgba(255, 183, 197, 0.7),
+                0 0 0 4px #FFFFFF;
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+        }
+
+        .sticker-btn:hover {
+            transform: scale(1.05) rotate(-1.5deg);
+            box-shadow: 
+                0 12px 24px -4px rgba(255, 183, 197, 0.9),
+                0 0 0 5px #FFFFFF;
+        }
+
+        .sticker-btn:active {
+            transform: scale(0.96);
+        }
+
+        /* Smooth staggered pop-in animation */
+        .pop-in {
+            opacity: 0;
+            transform: translateY(18px) scale(0.97);
+            transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .pop-in.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Subtle ruled paper lines for the letter sheet */
+        .letter-sheet {
+            background-color: rgba(255, 255, 255, 0.94);
+            background-image: linear-gradient(to bottom, transparent 31px, rgba(238, 244, 255, 0.65) 32px);
+            background-size: 100% 32px;
+        }
+
+        .cloud-puff {
+            filter: drop-shadow(0 6px 14px rgba(184, 208, 250, 0.28));
+        }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased selection:bg-blush selection:text-ink relative">
+
+    <!-- Floating Sparkles, Hearts & Confetti Canvas -->
+    <canvas id="pastelCanvas" class="fixed inset-0 w-full h-full pointer-events-none z-20"></canvas>
+
+    <!-- Decorative Floating Pastel Clouds (Background) -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        <svg class="cloud-puff absolute top-8 left-4 sm:left-12 w-28 sm:w-36 text-white/95 animate-float" viewBox="0 0 120 60" fill="currentColor">
+            <path d="M25,50 H95 A18,18 0 0,0 95,14 A22,22 0 0,0 55,10 A20,20 0 0,0 20,22 A15,15 0 0,0 25,50 Z"/>
+        </svg>
+        <svg class="cloud-puff absolute top-28 right-4 sm:right-14 w-24 sm:w-32 text-white/90 animate-float" style="animation-delay: 1.5s;" viewBox="0 0 120 60" fill="currentColor">
+            <path d="M25,50 H95 A18,18 0 0,0 95,14 A22,22 0 0,0 55,10 A20,20 0 0,0 20,22 A15,15 0 0,0 25,50 Z"/>
+        </svg>
+        <svg class="cloud-puff absolute bottom-10 left-6 sm:left-16 w-28 sm:w-40 text-white/85 animate-float" style="animation-delay: 2.5s;" viewBox="0 0 120 60" fill="currentColor">
+            <path d="M25,50 H95 A18,18 0 0,0 95,14 A22,22 0 0,0 55,10 A20,20 0 0,0 20,22 A15,15 0 0,0 25,50 Z"/>
+        </svg>
+    </div>
+
+    <!-- Main Content Container -->
+    <main class="relative z-10 min-h-screen cozy-stationery-bg flex flex-col items-center justify-center px-4 py-10 sm:px-6">
+
+        <!-- ========================================== -->
+        <!-- SCREEN 1: COZY ENVELOPE / LETTER COVER     -->
+        <!-- ========================================== -->
+        <section id="envelopeStage" class="w-full max-w-md mx-auto text-center transition-all duration-500">
+            <!-- Cute Doodle Envelope / Party Hat Icon -->
+            <div class="flex justify-center mb-3 animate-wiggle">
+                <svg class="w-14 h-14" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M32 10L14 50H50L32 10Z" fill="#b8d0fa" stroke="#4a404d" stroke-width="2.5" stroke-linejoin="round"/>
+                    <path d="M23 30L41 30" stroke="#ffccd8" stroke-width="4" stroke-linecap="round"/>
+                    <path d="M18 40L46 40" stroke="#ffebd6" stroke-width="4" stroke-linecap="round"/>
+                    <circle cx="32" cy="8" r="5" fill="#ffccd8" stroke="#4a404d" stroke-width="2"/>
+                    <path d="M12 50C16 53 22 53 26 50C30 53 34 53 38 50C42 53 48 53 52 50" stroke="#4a404d" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+            </div>
+
+            <!-- Cozy Stationery Envelope Card -->
+            <div class="relative bg-white/95 backdrop-blur-md border-2 border-softblue/70 rounded-[30px] p-8 sm:p-10 shadow-[0_18px_40px_-15px_rgba(184,208,250,0.5)]">
+                <!-- Cute Postage Stamp in Top Right Corner -->
+                <div class="postage-stamp absolute top-4 right-4 w-12 h-14 rounded-lg flex flex-col items-center justify-center rotate-3 select-none">
+                    <span class="text-base leading-none">🎂</span>
+                    <span class="font-hand text-xs text-mutedink mt-0.5">VIP</span>
+                </div>
+
+                <!-- Cute Decorative Corner Sparkles -->
+                <span class="absolute top-5 left-5 text-blushdark text-lg select-none">♡</span>
+                <span class="absolute bottom-4 left-5 text-softblue text-lg select-none">✦</span>
+                <span class="absolute bottom-4 right-5 text-blushdark text-lg select-none">♡</span>
+
+                <p class="font-hand text-2xl text-mutedink mb-1 mt-2">
+                    Special delivery
+                </p>
+
+                <h1 class="font-display text-3xl sm:text-4xl font-semibold text-ink tracking-tight leading-snug mb-7">
+                    For Hrick ♡
+                </h1>
+
+                <!-- Open Letter Button -->
+                <div class="flex flex-col items-center justify-center my-2">
+                    <button id="openSealBtn" aria-label="Tap to open your birthday letter" class="sticker-btn px-7 py-4 rounded-full flex items-center justify-center gap-2 cursor-pointer text-ink font-display font-medium text-base sm:text-lg">
+                        <span>Tap to open your birthday letter 💌</span>
+                    </button>
+                    <span class="mt-4 font-hand text-xl text-mutedink/85">
+                        From Afra, with questionable mission planning
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- SCREEN 2: THE LETTER & MISSION INVITATION  -->
+        <!-- ========================================== -->
+        <section id="invitationStage" class="hidden w-full max-w-xl mx-auto space-y-6 pb-14">
+
+            <!-- Cozy Handwritten-Style Letter Sheet -->
+            <article class="pop-in letter-sheet backdrop-blur-md border-2 border-softblue/60 rounded-[32px] p-6 sm:p-10 shadow-[0_18px_45px_-15px_rgba(184,208,250,0.45)] relative">
+                
+                <!-- Top Stationery Washi Tape & Stamp Accent -->
+                <div class="flex items-center justify-between border-b border-dashed border-softblue/80 pb-4 mb-6">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-lavender text-ink font-hand text-xl">
+                        <span>✉️ Confidential Birthday Dispatch</span>
+                    </div>
+                    <div class="postage-stamp px-2.5 py-1 rounded-md text-xs font-hand text-mutedink rotate-2 hidden sm:block">
+                        BDAY • ESCAPE
+                    </div>
+                </div>
+
+                <!-- Greeting -->
+                <div class="space-y-2 mb-5">
+                    <p class="font-hand text-2xl sm:text-3xl text-ink">Dear Hrick,</p>
+                    <h2 class="font-display text-2xl sm:text-3xl font-semibold text-ink">
+                        Hiiii birthday boyyyyy!!!
+                    </h2>
+                </div>
+
+                <!-- Opening Paragraphs -->
+                <div class="space-y-4 text-ink text-[15.5px] sm:text-base leading-relaxed font-medium">
+                    <p>Soooo, I have a little proposition for you.</p>
+                    <p>
+                        As you might already know, tomorrow is a very special day. Not only because it's your birthday (obviously), but also because I have decided that you deserve a little something more than just the usual university routine, the entire friend group and the same old birthday celebrations.
+                    </p>
+                    <p>And that is where my very important plan comes in.</p>
+                </div>
+
+                <!-- Highlighted Cozy "Mission Card" Box (Sticky Note / Dossier Style) -->
+                <div class="my-7 relative bg-gradient-to-br from-periwinkle via-lavender/60 to-blush/50 border-2 border-softblue rounded-[24px] p-5 sm:p-6 shadow-[0_10px_25px_-10px_rgba(184,208,250,0.6)]">
+                    <!-- Cute Washi Tape Strip at Top Center -->
+                    <div class="w-24 h-4 bg-peach/90 border border-ink/10 rounded-sm mx-auto -mt-7 mb-4 rotate-1 shadow-xs"></div>
+
+                    <div class="space-y-2.5 text-ink text-[15px] sm:text-base">
+                        <div class="flex flex-col sm:flex-row sm:items-baseline gap-0.5 sm:gap-2">
+                            <span class="font-display font-semibold text-ink uppercase tracking-wide text-sm bg-white/80 px-2.5 py-0.5 rounded-lg w-fit">MISSION:</span>
+                            <span class="font-semibold text-ink">A little birthday escape.</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:items-baseline gap-0.5 sm:gap-2">
+                            <span class="font-display font-semibold text-ink text-sm bg-white/80 px-2.5 py-0.5 rounded-lg w-fit">Destination:</span>
+                            <span class="font-medium">Bangladesh Military Museum</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:items-baseline gap-0.5 sm:gap-2">
+                            <span class="font-display font-semibold text-ink text-sm bg-white/80 px-2.5 py-0.5 rounded-lg w-fit">Time:</span>
+                            <span class="font-medium">After university</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:items-baseline gap-0.5 sm:gap-2">
+                            <span class="font-display font-semibold text-ink text-sm bg-white/80 px-2.5 py-0.5 rounded-lg w-fit">Company:</span>
+                            <span class="font-medium">You and me.</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:items-baseline gap-0.5 sm:gap-2">
+                            <span class="font-display font-semibold text-ink text-sm bg-white/80 px-2.5 py-0.5 rounded-lg w-fit">Excuse:</span>
+                            <span class="font-medium">We have very important birthday business to attend to.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Continuing Paragraphs -->
+                <div class="space-y-4 text-ink text-[15.5px] sm:text-base leading-relaxed font-medium">
+                    <p>
+                        Now, I know we're technically supposed to be normal members of our very lovely friend group, but I think we can make an exception for a little while. After all, it's your birthday, and I get to be a little selfish with your time.
+                    </p>
+                    <p>
+                        I want to spend some time with you. Just us. No group conversations, no everyone talking over everyone, no having to divide our attention between seventeen different things.
+                    </p>
+                    <p>
+                        Just a little adventure, some pictures, random conversations and hopefully a really nice memory for the two of us.
+                    </p>
+                </div>
+
+                <!-- Embedded Cozy RSVP Card -->
+                <div id="rsvpContainer" class="my-7 bg-blush/55 border-2 border-blushdark/60 rounded-[26px] p-5 sm:p-7 text-center shadow-sm">
+                    <p class="font-hand text-2xl text-ink mb-1">So, Mr. Birthday Boy,</p>
+                    <h3 class="font-display text-lg sm:text-xl font-semibold text-ink leading-snug mb-2">
+                        Would you like to accompany me on this very secret, very important birthday mission tomorrow after university?
+                    </h3>
+                    <p class="text-sm font-semibold text-mutedink mb-5">Please RSVP below.</p>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 relative min-h-[56px]">
+                        <!-- Primary Yes Button -->
+                        <button id="acceptBtn" class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-gradient-to-r from-[#ffadc0] to-[#ffc4d2] text-ink font-display font-semibold text-base sm:text-lg shadow-[0_8px_20px_-4px_rgba(255,173,192,0.85)] hover:scale-105 active:scale-95 transition-all cursor-pointer">
+                            Yes, I accept the mission! 💛
+                        </button>
+
+                        <!-- Secondary Playful Dodging Button -->
+                        <button id="dodgeBtn" class="w-full sm:w-auto px-6 py-3.5 rounded-full bg-white border-2 border-softblue text-mutedink font-display font-medium text-base hover:text-ink transition-all duration-200 cursor-pointer">
+                            Let me think... 🤔
+                        </button>
+                    </div>
+
+                    <!-- Cute Micro-Caption Pop-up -->
+                    <p id="dodgeHint" class="font-hand text-2xl text-[#d95b7a] mt-2.5 h-7 opacity-0 transition-opacity duration-200"></p>
+                </div>
+
+                <!-- Closing Paragraphs & Sign-off -->
+                <div class="space-y-4 text-ink text-[15.5px] sm:text-base leading-relaxed font-medium pt-1">
+                    <p>
+                        I would also like to inform you that your presence is highly requested, your company is greatly appreciated, and your favorite girl (me, in case that wasn't obvious) is very excited.
+                    </p>
+                    <p>Happy birthday in advance, Hrick.</p>
+                    <p>
+                        I hope you have the loveliest day tomorrow. And I hope I get to make a tiny part of it even lovelier.
+                    </p>
+                </div>
+
+                <!-- Sign-off -->
+                <div class="mt-6 pt-4 border-t border-dashed border-softblue/80">
+                    <p class="font-medium text-ink">With love and questionable mission planning,</p>
+                    <p class="font-hand text-3xl text-ink mt-1">Afra ♡</p>
+                </div>
+            </article>
+
+            <!-- ========================================== -->
+            <!-- SCREEN 3: UNLOCKED KEEPSAKE MISSION PASS   -->
+            <!-- ========================================== -->
+            <div id="confirmedPass" class="hidden transform transition-all duration-500 scale-95 opacity-0">
+                <div class="bg-white border-2 border-dashed border-ink/30 rounded-[30px] p-6 sm:p-8 shadow-[0_18px_45px_-12px_rgba(255,183,197,0.65)] relative overflow-hidden">
+                    <!-- Top Pastel Ticket Header -->
+                    <div class="bg-gradient-to-r from-blush via-lavender to-periwinkle -mx-6 -mt-6 sm:-mx-8 sm:-mt-8 px-6 py-5 mb-6 border-b-2 border-dashed border-ink/20 flex items-center justify-between">
+                        <div>
+                            <span class="font-hand text-xl text-mutedink block leading-none">Official keepsake</span>
+                            <h3 class="font-display text-2xl sm:text-3xl font-semibold text-ink mt-1">
+                                Birthday Mission Pass 🎟️
+                            </h3>
+                        </div>
+                        <span class="text-3xl animate-bounce">🥳</span>
+                    </div>
+
+                    <!-- Pass Details Grid -->
+                    <div class="space-y-3 mb-6 text-left">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between bg-cream p-3.5 rounded-2xl border border-softblue/50">
+                            <span class="text-xs font-bold uppercase tracking-wider text-mutedink">Agent</span>
+                            <span class="font-display font-medium text-ink text-base">Hrick (Mr. Birthday Boy)</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between bg-cream p-3.5 rounded-2xl border border-lavender">
+                            <span class="text-xs font-bold uppercase tracking-wider text-mutedink">Mission</span>
+                            <span class="font-display font-medium text-ink text-base">A little birthday escape</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between bg-cream p-3.5 rounded-2xl border border-softblue/50">
+                            <span class="text-xs font-bold uppercase tracking-wider text-mutedink">Destination</span>
+                            <span class="font-display font-medium text-ink text-base">Bangladesh Military Museum</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between bg-cream p-3.5 rounded-2xl border border-peach">
+                            <span class="text-xs font-bold uppercase tracking-wider text-mutedink">Time</span>
+                            <span class="font-display font-medium text-ink text-base">After university</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between bg-blush/50 p-3.5 rounded-2xl border border-blushdark/60">
+                            <span class="text-xs font-bold uppercase tracking-wider text-mutedink">Status</span>
+                            <span class="font-display font-semibold text-ink text-base">Confirmed ♡</span>
+                        </div>
+                    </div>
+
+                    <!-- Cozy Mysterious P.S. Note (No specific hints!) -->
+                    <div class="bg-lavender/70 rounded-2xl p-4 sm:p-5 text-center border border-softblue/60">
+                        <p class="font-hand text-2xl sm:text-[26px] text-ink leading-snug">
+                            P.S. A couple of little birthday surprises are waiting for you too... 🤫
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Interactive Logic & Pastel Hearts/Confetti Canvas -->
+    <script>
+        // ==========================================
+        // 1. TWINKLING STARS, HEARTS & CONFETTI CANVAS
+        // ==========================================
+        const canvas = document.getElementById('pastelCanvas');
+        const ctx = canvas.getContext('2d');
+        let ambientStars = [];
+        let burstParticles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class TwinkleStar {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1.5;
+                this.alpha = Math.random() * 0.6 + 0.2;
+                this.speed = (Math.random() * 0.015) + 0.005;
+                const colors = ['#ffccd8', '#b8d0fa', '#ffebd6', '#e2d1ff'];
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+            }
+            update() {
+                this.alpha += this.speed;
+                if (this.alpha >= 0.85 || this.alpha <= 0.15) {
+                    this.speed *= -1;
+                }
+            }
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.alpha;
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                const s = this.size;
+                ctx.moveTo(this.x, this.y - s * 1.6);
+                ctx.quadraticCurveTo(this.x, this.y, this.x + s * 1.6, this.y);
+                ctx.quadraticCurveTo(this.x, this.y, this.x, this.y + s * 1.6);
+                ctx.quadraticCurveTo(this.x, this.y, this.x - s * 1.6, this.y);
+                ctx.quadraticCurveTo(this.x, this.y, this.x, this.y - s * 1.6);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        class PastelConfetti {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                const angle = Math.random() * Math.PI * 2;
+                const velocity = Math.random() * 7 + 2.5;
+                this.vx = Math.cos(angle) * velocity;
+                this.vy = Math.sin(angle) * velocity - 3;
+                this.size = Math.random() * 7 + 5;
+                this.rotation = Math.random() * 360;
+                this.rotationSpeed = (Math.random() - 0.5) * 10;
+                this.life = 1;
+                this.decay = Math.random() * 0.012 + 0.008;
+                this.isHeart = Math.random() > 0.4;
+                const colors = ['#ffb7c5', '#ff9eb5', '#b8d0fa', '#a3c4f3', '#ffebd6', '#dec9ff'];
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.vy += 0.16;
+                this.vx *= 0.97;
+                this.rotation += this.rotationSpeed;
+                this.life -= this.decay;
+            }
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate((this.rotation * Math.PI) / 180);
+                ctx.globalAlpha = Math.max(0, this.life);
+                ctx.fillStyle = this.color;
+
+                if (this.isHeart) {
+                    const s = this.size * 0.65;
+                    ctx.beginPath();
+                    ctx.moveTo(0, s * 0.4);
+                    ctx.bezierCurveTo(-s, -s * 0.6, -s * 1.6, s * 0.5, 0, s * 1.5);
+                    ctx.bezierCurveTo(s * 1.6, s * 0.5, s, -s * 0.6, 0, s * 0.4);
+                    ctx.fill();
+                } else {
+                    ctx.beginPath();
+                    ctx.roundRect(-this.size / 2, -this.size / 3, this.size, this.size * 0.65, 3);
+                    ctx.fill();
+                }
+                ctx.restore();
+            }
+        }
+
+        for (let i = 0; i < 28; i++) {
+            ambientStars.push(new TwinkleStar());
+        }
+
+        function popConfetti(x, y, count = 65) {
+            for (let i = 0; i < count; i++) {
+                burstParticles.push(new PastelConfetti(x, y));
+            }
+        }
+
+        function animateLoop() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            ambientStars.forEach(star => {
+                star.update();
+                star.draw();
+            });
+
+            for (let i = burstParticles.length - 1; i >= 0; i--) {
+                const p = burstParticles[i];
+                p.update();
+                p.draw();
+                if (p.life <= 0) {
+                    burstParticles.splice(i, 1);
+                }
+            }
+
+            requestAnimationFrame(animateLoop);
+        }
+
+        window.onload = function() {
+            animateLoop();
+        };
+
+        // ==========================================
+        // 2. ENVELOPE OPEN INTERACTION
+        // ==========================================
+        const openSealBtn = document.getElementById('openSealBtn');
+        const envelopeStage = document.getElementById('envelopeStage');
+        const invitationStage = document.getElementById('invitationStage');
+
+        openSealBtn.addEventListener('click', () => {
+            const rect = openSealBtn.getBoundingClientRect();
+            popConfetti(rect.left + rect.width / 2, rect.top + rect.height / 2, 75);
+
+            envelopeStage.style.opacity = '0';
+            envelopeStage.style.transform = 'scale(0.92) translateY(-12px)';
+
+            setTimeout(() => {
+                envelopeStage.classList.add('hidden');
+                invitationStage.classList.remove('hidden');
+
+                const cards = invitationStage.querySelectorAll('.pop-in');
+                cards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.classList.add('visible');
+                    }, index * 140 + 60);
+                });
+            }, 350);
+        });
+
+        // ==========================================
+        // 3. PLAYFUL RSVP & KEEPSAKE PASS REVEAL
+        // ==========================================
+        const dodgeBtn = document.getElementById('dodgeBtn');
+        const dodgeHint = document.getElementById('dodgeHint');
+        const acceptBtn = document.getElementById('acceptBtn');
+        const rsvpContainer = document.getElementById('rsvpContainer');
+        const confirmedPass = document.getElementById('confirmedPass');
+
+        const cuteDodgeMessages = [
+            "Excuse me? 👀",
+            "Nice try, birthday boy hehe",
+            "You already know the answer 😌"
+        ];
+        let dodgeAttempts = 0;
+
+        function handleCuteDodge(e) {
+            if (dodgeAttempts < 3) {
+                if (e) e.preventDefault();
+                const moveX = (Math.random() - 0.5) * 90;
+                const moveY = (Math.random() - 0.5) * 32;
+                const scaleDown = Math.max(0.85, 1 - dodgeAttempts * 0.05);
+                dodgeBtn.style.transform = `translate(${moveX}px, ${moveY}px) scale(${scaleDown})`;
+                dodgeHint.textContent = cuteDodgeMessages[dodgeAttempts];
+                dodgeHint.style.opacity = '1';
+                dodgeAttempts++;
+            } else {
+                dodgeBtn.style.transform = 'translate(0, 0) scale(1)';
+                dodgeBtn.textContent = "Okay fine, yes! 😊";
+                dodgeBtn.className = "w-full sm:w-auto px-7 py-3.5 rounded-full bg-lavender border-2 border-softblue text-ink font-display font-semibold text-base shadow-md hover:scale-105 transition-all cursor-pointer";
+                dodgeHint.textContent = "Hehe knew it 💖";
+                dodgeBtn.onclick = confirmBirthdayDate;
+            }
+        }
+
+        dodgeBtn.addEventListener('mouseenter', handleCuteDodge);
+        dodgeBtn.addEventListener('touchstart', handleCuteDodge, { passive: false });
+        dodgeBtn.addEventListener('click', (e) => {
+            if (dodgeAttempts < 3) {
+                handleCuteDodge(e);
+            } else {
+                confirmBirthdayDate();
+            }
+        });
+
+        function confirmBirthdayDate() {
+            const rect = acceptBtn.getBoundingClientRect();
+            popConfetti(rect.left + rect.width / 2, rect.top + rect.height / 2, 100);
+            setTimeout(() => {
+                popConfetti(window.innerWidth * 0.3, window.innerHeight * 0.45, 50);
+                popConfetti(window.innerWidth * 0.7, window.innerHeight * 0.45, 50);
+            }, 250);
+
+            rsvpContainer.innerHTML = `
+                <div class="py-2">
+                    <span class="text-3xl block mb-1">🎉💛🎉</span>
+                    <h3 class="font-display text-xl sm:text-2xl font-semibold text-ink">
+                        Mission accepted! See you after university tomorrow ♡
+                    </h3>
+                </div>
+            `;
+
+            confirmedPass.classList.remove('hidden');
+            requestAnimationFrame(() => {
+                confirmedPass.classList.remove('scale-95', 'opacity-0');
+                confirmedPass.classList.add('scale-100', 'opacity-100');
+                confirmedPass.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
+        }
+
+        acceptBtn.addEventListener('click', confirmBirthdayDate);
+    </script>
+</body>
+</html>
